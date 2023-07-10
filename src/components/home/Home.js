@@ -32,8 +32,8 @@ export default function Home() {
     mx += (x - mx) * speed;
 
     if (backFrameRef.current !== null) {
-      shadow.style.transform = `translateX(${mx / 35}px)`;
-      human.style.transform = `translateX(${-(mx / 20)}px)`;
+      shadow.style.transform = `translateX(${mx / 30}px)`;
+      human.style.transform = `translateX(${-(mx / 15)}px)`;
       text.style.transform = `translate(${-(mx / 10)}px)`;
     }
 

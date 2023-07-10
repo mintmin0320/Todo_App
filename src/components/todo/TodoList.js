@@ -2,12 +2,29 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck, faPenToSquare, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 import data from './../../data.json'
 
 export default function TodoList() {
   const [state, setState] = useState({
     todoList: data,
   });
+
+  const handleOnSelectBtn = (param) => {
+    param === 'check' ?
+      setIsCompleted()
+      :
+      param === 'write' ?
+        alert('write')
+        :
+        alert(param)
+  }
+
+  const setIsCompleted = () => {
+    alert('ddd');
+  }
+
 
   const Card = () => {
     return (
@@ -38,9 +55,27 @@ export default function TodoList() {
           </SearchBox>
         </Header>
         <SelectBox>
-          <SelectBtn></SelectBtn>
-          <SelectBtn></SelectBtn>
-          <SelectBtn></SelectBtn>
+          <SelectBtn onClick={() => handleOnSelectBtn("check")}>
+            <FontAwesomeIcon
+              icon={faCircleCheck}
+              color='green'
+              size='2x'
+            />
+          </SelectBtn>
+          <SelectBtn onClick={() => handleOnSelectBtn("write")}>
+            <FontAwesomeIcon
+              icon={faPenToSquare}
+              // color='green'
+              size='2x'
+            />
+          </SelectBtn>
+          <SelectBtn onClick={() => handleOnSelectBtn("faRotateRight")}>
+            <FontAwesomeIcon
+              icon={faRotateRight}
+              color='blue'
+              size='2x'
+            />
+          </SelectBtn>
         </SelectBox>
         <Content>
           <Card />
@@ -92,12 +127,12 @@ const LogoBox = styled.div`
 const LinkItem = styled(Link)`
   width: 65%;
   height: 85%;
+  background-color: red;
 `;
 
 const LogoImg = styled.img`
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
+  width: 65%;
+  height: 85%;
 `
 
 const SearchBox = styled.div`
@@ -110,7 +145,7 @@ const SearchBox = styled.div`
 
 const SearchInput = styled.input`
   width: 74%;
-  height: 35%;
+  height: 30%;
   display: flex;
   border: solid 2px #CFCFCF;
   border-radius: 10px;
@@ -121,14 +156,18 @@ const SelectBox = styled.div`
   width: 45%;
   height: 10%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `
 
 const SelectBtn = styled.div`
-  width: 15%;
+  width: 10%;
   height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: solid 2px #CFCFCF;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  border-radius: 50%;
   background-color: #fff;
   cursor: pointer;
 `
