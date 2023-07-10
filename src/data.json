@@ -1,0 +1,58 @@
+[
+  {
+    "postId": 1,
+    "name": "박하민",
+    "postTitle": "1시간에 코테 문제 100문제 풀기",
+    "postContent": "코테 100문제를 풀어서 네카라구쿠배에 입사하기",
+    "isCompleted": false,
+    "date": "2023-7-1"
+  },
+  {
+    "postId": 2,
+    "name": "고대은",
+    "postTitle": "분리수거 하기",
+    "postContent": "저녁 먹기 전까지 꼭 쌓인 분리수거 하기",
+    "isCompleted": true,
+    "date": "2023-12-24"
+  },
+  {
+    "postId": 3,
+    "name": "김규진",
+    "postTitle": "데드리프트 1RM 150kg 도전하기",
+    "postContent": "헬스장에서 3대 측정하기",
+    "isCompleted": false,
+    "date": "2023-12-24"
+  },
+  {
+    "postId": 4,
+    "name": "한국인",
+    "postTitle": "에어팟30 사전예약 하기",
+    "postContent": "이번에 출시된 에어팟30 사전예약 신청하기",
+    "isCompleted": false,
+    "date": "2023-12-24"
+  },
+  {
+    "postId": 5,
+    "name": "최진영",
+    "postTitle": "친구랑 카페가기",
+    "postContent": "스타벅스 가서 허니 자몽 블랙티 마시기",
+    "isCompleted": true,
+    "date": "2023-12-24"
+  },
+  {
+    "postId": 6,
+    "name": "John AHn",
+    "postTitle": "강의 영상 촬영하기",
+    "postContent": "react 강의 영상 촬영하기",
+    "isCompleted": false,
+    "date": "2023-12-24"
+  },
+  {
+    "postId": 7,
+    "name": "민트민",
+    "postTitle": "인프콘 신청하기",
+    "postContent": "인프런에서 인프콘 신청하기",
+    "isCompleted": true,
+    "date": "2023-7-10"
+  }
+]
