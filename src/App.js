@@ -8,6 +8,6 @@ function App() {
       <MainRouter />
     </Router>
   );
-}
+};
 
 export default App;

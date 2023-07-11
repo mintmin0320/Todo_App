@@ -12,6 +12,12 @@ export default function TodoRouter() {
       <Route
         path="/"
         element={<TodoListPage />} />
+      <Route
+        path="/*"
+        element={<div>404</div>} />
     </Routes>
+
+
+
   );
 };
