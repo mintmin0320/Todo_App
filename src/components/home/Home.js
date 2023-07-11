@@ -160,7 +160,6 @@ const Container = styled.div`
     @media screen and (max-width: 1500px) {
       width: 900px;
     }
-
   }
 
   .post-it {

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from 'react'
+import React, { Fragment, useState, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,23 +6,26 @@ import { toast, ToastContainer } from 'react-toastify';
 
 // icon, css, dummy data
 import 'react-toastify/dist/ReactToastify.css';
-import { faCircleCheck, faPenToSquare, faRotateRight, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faPenToSquare, faRotateRight, faTrashCan, faFilePen, faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import data from './../../data.json'
 
 export default function TodoList() {
   const [todoList, setTodoList] = useState(data);
   const [title, setTitle] = useState('');
+  const [editTitle, setEditTitle] = useState('');
   const [name, setName] = useState('');
   const nextId = useRef(7);
 
-  // title, name의 input 값 저장
-  const handleOnChange = (e, param) => {
+  const handleOnChange = useCallback((e, param) => {
     if (param === 'title') {
       setTitle(e.target.value);
     } else if (param === 'name') {
       setName(e.target.value);
-    }
-  };
+    } else if (param === 'edit') {
+      console.log(e.target.value);
+      setEditTitle(e.target.value);
+    };
+  }, []);
 
   // 일정 등록
   const handleOnSubmit = () => {
@@ -31,68 +34,110 @@ export default function TodoList() {
       postId: nextId.current,
       name,
       postTitle: title,
-      done: false
+      done: false,
+      editStatus: false,
+      date: new Date()
     }]);
     nextId.current += 1;
 
     setTitle('');
     setName('');
 
-    toast.success(`${name}님의 일정 등록 되었습니다.`);
+    toast.success(`${name}님의 Todo가 등록 되었습니다.`);
   };
 
   // 일정 완료 버튼
-  const handleOnDoneBtn = (id, name, done) => {
+  const handleOnDoneTodo = useCallback((id, name, done) => {
     setTodoList(todoList.map((todo) =>
       todo.postId === id ? { ...todo, done: !todo.done } : todo
     ));
 
     if (done) {
-      toast.error(`${name}님! 일정 달성을 취소했습니다.`);
+      toast.error(`${name}님! Todo 달성을 취소했습니다.`);
     } else {
-      toast.success(`${name}님! 일정 달성을 축하드립니다.`);
+      toast.success(`${name}님! Todo 달성을 축하드립니다.`);
     };
-  };
+  }, [todoList]);
+
+  const handleOnEditBtn = useCallback((id, name) => {
+    console.log("hi")
+    setTodoList(todoList.map((todo) =>
+      todo.postId === id ? { ...todo, editStatus: true } : todo
+    ));
+
+    toast.info(`이제 ${name}님의 Todo가 수정 가능합니다.`);
+  }, [todoList])
+
+  // 일정 수정
+  const handleOnEditTodo = useCallback((id, name) => {
+    setTodoList(todoList.map((todo) =>
+      todo.postId === id ? { ...todo, postTitle: editTitle, editStatus: false } : todo
+    ));
+
+    setEditTitle('');
+
+    toast.success(`${name}님의 Todo가 수정되었습니다.`);
+  }, [todoList, editTitle]);
 
   // 일정 삭제 
-  const handleOnRemoveBtn = (id) => {
+  const handleOnRemoveTodo = useCallback((id) => {
     setTodoList(todoList.filter((todo) =>
       todo.postId !== id
     ));
 
-    toast.success('일정이 삭제 되었습니다.')
-  };
+    toast.success('Todo가 삭제 되었습니다.')
+  }, [todoList]);
 
   // 완료된 일정만 조회
-  const handleSelectDoneData = () => {
+  const handleSelectDoneTodo = useCallback(() => {
     setTodoList(todoList.filter(({ done }) =>
       done === true
     ));
 
-    toast.success('달성한 일정 조회 성공!');
-  };
+    toast.success('달성한 Todo 조회 성공!');
+  }, [todoList]);
 
   // 리스트 초기화 
-  const handleOnRefreshBtn = () => {
+  const handleOnRefreshTodo = () => {
     setTodoList(data);
 
-    toast.success('초기화 되었습니다.')
+    toast.success('초기화 되었습니다.');
   };
 
+  // todo 반복 출력 
   const Card = () => {
     return (
       <Fragment>
         {todoList.map((item) => {
           return (
-            <PostBox key={item.postId} style={item.done ? { background: "silver" } : { background: "#FFFF00" }}>
-              <PostTitle>{item.postTitle}</PostTitle>
+            <PostBox key={item.postId}
+              style={item.done ? { background: "#BDBDBD" } : { background: "#FFFF00" }}
+            >
+              {item.editStatus ?
+                <PostEditTextarea
+                  value={editTitle}
+                  onChange={(e) => handleOnChange(e, 'edit')}
+                />
+                :
+                <PostTitle>{item.postTitle}</PostTitle>
+              }
               <PostBottomBox>
                 <PostNameBox>{item.name}</PostNameBox>
                 <PostBtnBox>
-                  <PostBtn onClick={() => handleOnDoneBtn(item.postId, item.name, item.done)}>
+                  <PostBtn onClick={() => handleOnDoneTodo(item.postId, item.name, item.done)}>
                     <FontAwesomeIcon icon={faCircleCheck} color='green' />
                   </PostBtn>
-                  <PostBtn onClick={() => handleOnRemoveBtn(item.postId)}>
+                  {
+                    item.editStatus ?
+                      <PostBtn onClick={() => handleOnEditTodo(item.postId, item.name)}>
+                        <FontAwesomeIcon icon={faClipboardCheck} />
+                      </PostBtn>
+                      :
+                      <PostBtn onClick={() => handleOnEditBtn(item.postId, item.name)}>
+                        <FontAwesomeIcon icon={faFilePen} />
+                      </PostBtn>
+                  }
+                  <PostBtn onClick={() => handleOnRemoveTodo(item.postId)}>
                     <FontAwesomeIcon icon={faTrashCan} />
                   </PostBtn>
                 </PostBtnBox>
@@ -119,7 +164,7 @@ export default function TodoList() {
               <TitleInput
                 onChange={(e) => handleOnChange(e, 'title')}
                 value={title}
-                placeholder='일정을 입력해 주세요!'
+                placeholder='Todo를 입력해 주세요!'
                 required
               />
             </TopInputBox>
@@ -137,14 +182,14 @@ export default function TodoList() {
           </Form>
         </Header>
         <SelectBox>
-          <SelectBtn onClick={() => handleSelectDoneData()}>
+          <SelectBtn onClick={() => handleSelectDoneTodo()}>
             <FontAwesomeIcon
               icon={faCircleCheck}
               color='green'
               size='2x'
             />
           </SelectBtn>
-          <SelectBtn onClick={() => handleOnRefreshBtn()}>
+          <SelectBtn onClick={() => handleOnRefreshTodo()}>
             <FontAwesomeIcon
               icon={faRotateRight}
               color='blue'
@@ -157,8 +202,8 @@ export default function TodoList() {
         </Content>
       </Wrap>
       <ToastContainer
-        position="top-right"
-        autoClose={3000}
+        position="top-center"
+        autoClose={2500}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -182,6 +227,23 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  input {
+    font-size: 18px;
+  }
+
+  input::placeholder {
+    font-size: 17px;
+  }
+
+  textarea {
+    font-size: 18px;
+    resize: none;
+  }
+
+  textarea::placeholder {
+    font-size: 17px;
+  }
 `
 
 const Wrap = styled.div`
@@ -256,6 +318,7 @@ const TitleInput = styled.input`
   border: solid 2px #CFCFCF;
 `
 
+// 이름 입력 input
 const NameInput = styled.input`
   width: 90%;
   height: 50%;
@@ -335,6 +398,13 @@ const PostBox = styled.div`
 const PostTitle = styled.div`
   width: 96%;
   height: 80%;
+  padding-top: 8px;
+`
+
+const PostEditTextarea = styled.textarea`
+  width: 100%;
+  height: 80%;
+  border: 0px;
   padding-top: 8px;
 `
 

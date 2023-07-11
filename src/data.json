@@ -4,41 +4,47 @@
     "name": "고대은",
     "postTitle": "책 400권 버리기",
     "done": true,
-    "date": "2023-12-24"
+    "editStatus": false,
+    "date": "2023-7-4"
   },
   {
     "postId": 2,
     "name": "최진영",
     "postTitle": "친구랑 카페가서 코딩 40시간 하기",
     "done": true,
-    "date": "2023-12-24"
+    "editStatus": false,
+    "date": "2023-7-5"
   },
   {
     "postId": 3,
     "name": "김규진",
     "postTitle": "데드리프트 1RM 250kg 도전하기",
     "done": false,
-    "date": "2023-12-24"
+    "editStatus": false,
+    "date": "2023-7-6"
   },
   {
     "postId": 4,
     "name": "한국인",
     "postTitle": "에어팟30 사전예약 하기",
     "done": false,
-    "date": "2023-12-24"
+    "editStatus": false,
+    "date": "2023-7-7"
   },
   {
     "postId": 5,
     "name": "John AHn",
     "postTitle": "React 관련 강의 40강 촬영하기",
     "done": true,
-    "date": "2023-12-24"
+    "editStatus": false,
+    "date": "2023-7-9"
   },
   {
     "postId": 6,
     "name": "박하민",
-    "postTitle": "1시간에 코테 문제 100문제 풀기",
+    "postTitle": "1시간에 코테 100문제 풀기",
     "done": false,
-    "date": "2023-7-1"
+    "editStatus": false,
+    "date": "2023-7-11"
   }
 ]
