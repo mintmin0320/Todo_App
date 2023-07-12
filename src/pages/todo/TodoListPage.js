@@ -1,9 +1,9 @@
 import React from 'react'
 
-import TodoList from '../../components/todo/TodoList'
+import Todo from '../../components/todo/Todo'
 
 export default function TodoListPage() {
   return (
-    <TodoList />
+    <Todo />
   );
 };
