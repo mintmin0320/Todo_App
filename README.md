@@ -4,18 +4,22 @@
   
 # >>[Todo App 사용해 보기](https://mintmin0320.github.io/Todo_App/)<<
 
+<div>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>  
+  <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=React Router&logoColor=white"/>  
+  <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"/> 
+</div>
 <br/>
-  < 메인 페이지 >
-  
-  ![index](https://github.com/mintmin0320/COMMA/assets/114549939/f87365c3-cfe8-452f-86d8-da525313ac8e)
+<br/>
 
-<br/>
-< 메인 페이지 - 시연영상 >
+### < 메인 페이지 - 마우스 이벤트 시연 >
 
 https://github.com/mintmin0320/smash/assets/114549939/58aa41f9-69aa-4437-915c-c8528b07eab7
 
 <br/>
-< UI Flow >
+
+### < UI Flow >
 
 ![풀스택-1기  박하민 Todo App User Flow](https://github.com/mintmin0320/Todo_App/assets/114549939/e6c5c885-b61d-455c-9276-1974653b2971)
 
