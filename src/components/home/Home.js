@@ -120,7 +120,7 @@ const Container = styled.div`
       color : blue;
     }
 
-    @media screen and (max-width: 1500px) {
+    @media screen and (max-width: 1400px) {
       font-size: 35px;
       margin-top: 30px;
     }
@@ -166,7 +166,7 @@ const Container = styled.div`
     bottom: 10%;
     transform: translateX(-50%);
 
-    @media screen and (max-width: 1500px) {
+    @media screen and (max-width: 1400px) {
       width: 900px;
     }
 
@@ -183,7 +183,7 @@ const Container = styled.div`
     top: 35%;
     transform: translateX(-10%);
 
-    @media screen and (max-width: 1500px) {
+    @media screen and (max-width: 1400px) {
       width: 450px;
     }
 
