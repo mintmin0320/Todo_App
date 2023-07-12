@@ -133,7 +133,7 @@ export default function Todo() {
 
 const Container = styled.div`
   height: 100vh;
-  background: url(../images/background.webp) center center / cover no-repeat;
+  background: url(images/background.webp) center center / cover no-repeat;
   padding: 0;
   margin: 0;
   overflow: hidden;
