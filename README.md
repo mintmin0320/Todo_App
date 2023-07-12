@@ -13,7 +13,7 @@
 <br/>
 <br/>
 
-### < 메인 페이지 - 마우스 이벤트 시연 >
+### < 메인 페이지 >
 
 https://github.com/mintmin0320/smash/assets/114549939/58aa41f9-69aa-4437-915c-c8528b07eab7
 
