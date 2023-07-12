@@ -4,10 +4,10 @@ import data from '../../data.json'
 
 export const todoSlice = createSlice({
   name: 'todos',
-  initialState: { value: data },
+  initialState: { todoArr: data },
   reducers: {
     todo: (state, action) => {
-      state.value = action.payload;
+      state.todoArr = action.payload;
     }
   },
 })

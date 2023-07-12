@@ -12,16 +12,16 @@ import { faCircleCheck, faTrashCan, faFilePen, faClipboardCheck } from '@fortawe
 
 function TodoList() {
   const dispatch = useDispatch();
-  const todoData = useSelector(state => state.todos.value);
+  const todoList = useSelector(state => state.todos.todoArr);
   const [editTitle, setEditTitle] = useState('');
 
   const handleOnChange = useCallback((e) => {
     setEditTitle(e.target.value);
   }, []);
 
-  // 일정 완료 버튼
-  const handleOnDoneTodo = useCallback((id, name, done) => {
-    dispatch(todo(todoData.map((todo) =>
+  // todo 완료 버튼
+  const handleOnDoneBtn = useCallback((id, name, done) => {
+    dispatch(todo(todoList.map((todo) =>
       todo.postId === id ? { ...todo, done: !todo.done } : todo
     )));
 
@@ -30,40 +30,40 @@ function TodoList() {
     } else {
       toast.success(`${name}님! Todo 달성을 축하드립니다.`);
     };
-  }, [dispatch, todoData]);
+  }, [dispatch, todoList]);
 
   // 수정 버튼 클릭
   const handleOnEditBtn = useCallback((id, name) => {
-    dispatch(todo(todoData.map((todo) =>
+    dispatch(todo(todoList.map((todo) =>
       todo.postId === id ? { ...todo, editStatus: true } : todo
     )));
 
     toast.info(`이제 ${name}님의 Todo가 수정 가능합니다.`);
-  }, [dispatch, todoData]);
+  }, [dispatch, todoList]);
 
-  // 일정 수정
-  const handleOnEditTodo = useCallback((id, name) => {
-    dispatch(todo(todoData.map((todo) =>
+  // 수정 내용 저장
+  const handleOnEditSaveBtn = useCallback((id, name) => {
+    dispatch(todo(todoList.map((todo) =>
       todo.postId === id ? { ...todo, postTitle: editTitle, editStatus: false } : todo
     )));
 
     setEditTitle('');
 
     toast.success(`${name}님의 Todo가 수정되었습니다.`);
-  }, [dispatch, editTitle, todoData]);
+  }, [dispatch, editTitle, todoList]);
 
   // // 일정 삭제 
-  const handleOnRemoveTodo = useCallback((id) => {
-    dispatch(todo(todoData.filter((todo) =>
+  const handleOnRemoveBtn = useCallback((id) => {
+    dispatch(todo(todoList.filter((todo) =>
       todo.postId !== id
     )));
 
     toast.success('Todo가 삭제 되었습니다.');
-  }, [dispatch, todoData]);
+  }, [dispatch, todoList]);
 
   return (
     <Fragment>
-      {todoData.map((item) => {
+      {todoList.map((item) => {
         return (
           <PostBox key={item.postId}
             style={item.done ? { background: "#BDBDBD" } : { background: "#FFFF00" }}
@@ -79,12 +79,12 @@ function TodoList() {
             <PostBottomBox>
               <PostNameBox>{item.name}</PostNameBox>
               <PostBtnBox>
-                <PostBtn onClick={() => handleOnDoneTodo(item.postId, item.name, item.done)}>
+                <PostBtn onClick={() => handleOnDoneBtn(item.postId, item.name, item.done)}>
                   <FontAwesomeIcon icon={faCircleCheck} color='green' />
                 </PostBtn>
                 {
                   item.editStatus ?
-                    <PostBtn onClick={() => handleOnEditTodo(item.postId, item.name)}>
+                    <PostBtn onClick={() => handleOnEditSaveBtn(item.postId, item.name)}>
                       <FontAwesomeIcon icon={faClipboardCheck} />
                     </PostBtn>
                     :
@@ -92,7 +92,7 @@ function TodoList() {
                       <FontAwesomeIcon icon={faFilePen} />
                     </PostBtn>
                 }
-                <PostBtn onClick={() => handleOnRemoveTodo(item.postId)}>
+                <PostBtn onClick={() => handleOnRemoveBtn(item.postId)}>
                   <FontAwesomeIcon icon={faTrashCan} />
                 </PostBtn>
               </PostBtnBox>

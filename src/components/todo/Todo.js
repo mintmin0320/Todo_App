@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { todo } from '../../redux/slices/todoSlice';
 import TodoList from './TodoList';
+import { todo } from '../../redux/slices/todoSlice';
 
 // icon, css, dummy data
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,54 +15,62 @@ import data from '../../data.json'
 
 export default function Todo() {
   const dispatch = useDispatch();
-  const todoData = useSelector(state => state.todos.value);
-  const [title, setTitle] = useState('');
-  const [name, setName] = useState('');
+  const todoList = useSelector(state => state.todos.todoArr);
   const nextId = useRef(7);
+  const [state, setState] = useState({
+    title: '',
+    name: ''
+  });
 
-  const handleOnChange = (e, param) => {
-    if (param === 'title') {
-      setTitle(e.target.value);
-    } else if (param === 'name') {
-      setName(e.target.value);
-    }
-  };
+  const handleOnChange = useCallback((e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value
+    });
+  }, [state]);
 
   // 일정 등록
-  const handleOnSubmit = () => {
-    setTitle('');
-    setName('');
-    dispatch(todo([...todoData,
+  const handleOnSubmit = useCallback(() => {
+    dispatch(todo([...todoList,
     {
       postId: nextId.current,
-      name,
-      postTitle: title,
+      name: state.name,
+      postTitle: state.title,
       done: false,
       editStatus: false
     }]));
-
+    setState({
+      ...state,
+      title: '',
+      name: ''
+    });
     nextId.current += 1;
-    toast.success(`${name}님의 Todo가 등록 되었습니다.`);
-  };
+
+    toast.success(`${state.name}님의 Todo가 등록 되었습니다.`);
+  }, [dispatch, state, todoList]);
 
   // 완료된 일정만 조회
-  const handleOnSelectBtn = () => {
+  const handleOnSelectDoneBtn = useCallback(() => {
     dispatch(todo(
-      todoData.filter(({ done }) =>
+      todoList.filter(({ done }) =>
         done === true
       )
     ));
 
     toast.success('달성한 Todo 조회 성공!');
-  };
-
+  }, [dispatch, todoList]);
 
   // 리스트 초기화 
-  const handleOnRefreshTodo = () => {
+  const handleOnRefreshBtn = useCallback(() => {
     dispatch(todo(data));
+    setState({
+      ...state,
+      title: '',
+      name: ''
+    });
 
     toast.success('초기화 되었습니다.');
-  };
+  }, [dispatch, state]);
 
   return (
     <Container>
@@ -77,7 +85,8 @@ export default function Todo() {
             <TopInputBox>
               <TitleInput
                 onChange={(e) => handleOnChange(e, 'title')}
-                value={title}
+                value={state.title}
+                name='title'
                 placeholder='Todo를 입력해 주세요!'
                 required
               />
@@ -85,7 +94,8 @@ export default function Todo() {
             <BottomInputBox>
               <NameInput
                 onChange={(e) => handleOnChange(e, 'name')}
-                value={name}
+                value={state.name}
+                name='name'
                 placeholder='성함을 입력해 주세요!'
                 required
               />
@@ -96,14 +106,14 @@ export default function Todo() {
           </Form>
         </Header>
         <SelectBox>
-          <SelectBtn onClick={() => handleOnSelectBtn()}>
+          <SelectBtn onClick={() => handleOnSelectDoneBtn()}>
             <FontAwesomeIcon
               icon={faCircleCheck}
               color='green'
               size='2x'
             />
           </SelectBtn>
-          <SelectBtn onClick={() => handleOnRefreshTodo()}>
+          <SelectBtn onClick={() => handleOnRefreshBtn()}>
             <FontAwesomeIcon
               icon={faRotateRight}
               color='blue'
@@ -203,7 +213,7 @@ const LogoImg = styled.img`
   height: 85%;
 `
 
-// 일정 등록
+// todo form
 const Form = styled.form`
   width: 60%;
   height: 100%;
@@ -226,13 +236,13 @@ const BottomInputBox = styled.div`
   display: flex;
 `
 
+// 제목, 이름 입력 input
 const TitleInput = styled.input`
   width: 100%;
   height: 50%;
   border: solid 2px #CFCFCF;
 `
 
-// 이름 입력 input
 const NameInput = styled.input`
   width: 90%;
   height: 50%;
