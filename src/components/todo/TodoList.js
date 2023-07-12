@@ -142,10 +142,6 @@ const PostTitle = styled.div`
   width: 96%;
   height: 80%;
   padding-top: 8px;
-
-  @media screen and (max-width: 450px) {
-    font-size: 14px;
-  }
 `
 
 const PostEditTextarea = styled.textarea`
@@ -168,15 +164,11 @@ const PostNameBox = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: bold;
 
   @media screen and (max-width: 1500px) {
-    font-size: 12px;
-  }
-
-  @media screen and (max-width: 450px) {
-    font-size: 10px;
+    font-size: 11px;
   }
 `
 
@@ -198,9 +190,4 @@ const PostBtn = styled.div`
   align-items: center;
   font-size: 18px;
   cursor: pointer;
-
-  @media screen and (max-width: 450px) {
-    height: 100%;
-    font-size: 12px;
-  }
 `

@@ -124,10 +124,6 @@ const Container = styled.div`
       font-size: 35px;
       margin-top: 30px;
     }
-
-    @media screen and (max-width: 450px) {
-      width: 60%;
-    }
   }
 
   .title img {
@@ -153,11 +149,6 @@ const Container = styled.div`
     width: 700px;
     left: 50%;
     transform: translateX(-50%);
-
-    @media screen and (max-width: 450px) {
-      width: 400px;
-      bottom: 40%;
-    }
   }
 
   .human {
@@ -169,12 +160,6 @@ const Container = styled.div`
     @media screen and (max-width: 1500px) {
       width: 900px;
     }
-
-    @media screen and (max-width: 450px) {
-      width: 500px;
-      left: 55%;
-      bottom: 35%;
-    }
   }
 
   .post-it {
@@ -182,13 +167,5 @@ const Container = styled.div`
     left: 58%;
     top: 35%;
     transform: translateX(-10%);
-
-    @media screen and (max-width: 1500px) {
-      width: 450px;
-    }
-
-    @media screen and (max-width: 450px) {
-      display: none;
-    }
   }
 `
