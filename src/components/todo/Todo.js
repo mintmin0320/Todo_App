@@ -56,9 +56,14 @@ export default function Todo() {
         done === true
       )
     ));
+    setState({
+      ...state,
+      title: '',
+      name: ''
+    });
 
     toast.success('달성한 Todo 조회 성공!');
-  }, [dispatch, todoList]);
+  }, [dispatch, state, todoList]);
 
   // 리스트 초기화 
   const handleOnRefreshBtn = useCallback(() => {
