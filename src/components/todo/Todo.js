@@ -184,6 +184,10 @@ const Wrap = styled.div`
               0 4px 4px rgba(0,0,0,0.11), 
               0 6px 8px rgba(0,0,0,0.11),
               0 8px 16px rgba(0,0,0,0.11);
+
+  @media screen and (max-width: 1500px) {
+    height: 85%;
+  }
 `
 
 const Header = styled.div`
@@ -211,6 +215,11 @@ const LinkItem = styled(Link)`
 const LogoImg = styled.img`
   width: 65%;
   height: 85%;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    height: 100%;
+  }
 `
 
 // todo form
@@ -221,6 +230,10 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 450px) {
+    width: 95%;
+  }
 `
 
 const TopInputBox = styled.div`
@@ -250,7 +263,12 @@ const NameInput = styled.input`
   border-bottom: solid 2px #CFCFCF;
   border-left: solid 2px #CFCFCF;
   border-right: solid 2px #CFCFCF;
+
+  @media screen and (max-width: 450px) {
+    width: 80%;
+  }
 `
+
 // 작성 버튼
 const InsertBtn = styled.button`
   width: 10%;
@@ -264,6 +282,11 @@ const InsertBtn = styled.button`
   border-left: 0px;
   font-size: 22px;
   cursor: pointer;
+
+  @media screen and (max-width: 450px) {
+    width: 20%;
+    font-size: 14px;
+  }
 `
 
 // 정렬, 초기화 버튼
@@ -272,6 +295,12 @@ const SelectBox = styled.div`
   height: 10%;
   display: flex;
   justify-content: space-around;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    height: 8%;
+    font-size: 11px;
+  }
 `
 
 const SelectBtn = styled.div`
@@ -302,4 +331,9 @@ const Content = styled.div`
               0 4px 4px rgba(0,0,0,0.11), 
               0 6px 8px rgba(0,0,0,0.11),
               0 8px 16px rgba(0,0,0,0.11);
+
+  @media screen and (max-width: 450px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
