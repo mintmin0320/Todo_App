@@ -133,7 +133,7 @@ const PostBox = styled.div`
               0 6px 8px rgba(0,0,0,0.11),
               0 8px 16px rgba(0,0,0,0.11);
 
-  @media screen and (max-width: 1400px) {
+  @media screen and (max-width: 1500px) {
     width: 90%;  
   }
 `
@@ -171,7 +171,7 @@ const PostNameBox = styled.div`
   font-size: 14px;
   font-weight: bold;
 
-  @media screen and (max-width: 1400px) {
+  @media screen and (max-width: 1500px) {
     font-size: 12px;
   }
 
