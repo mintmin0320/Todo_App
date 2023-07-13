@@ -23,4 +23,8 @@ https://github.com/mintmin0320/smash/assets/114549939/58aa41f9-69aa-4437-915c-c8
 
 ![풀스택-1기  박하민 Todo App User Flow](https://github.com/mintmin0320/Todo_App/assets/114549939/e6c5c885-b61d-455c-9276-1974653b2971)
 
+## < 유저 시나리오 >
+
+![유저 시나리오-1](https://github.com/mintmin0320/Todo_App/assets/114549939/460333d8-ebac-451c-959c-2d2833488dc3)
+
 </div>
