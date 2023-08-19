@@ -4,6 +4,11 @@
   
 # >>[Todo App 사용해 보기](https://mintmin0320.github.io/Todo_App/)<<
 
+### 제작 기간
+7.10 ~ 7.13
+
+<br/>
+
 <div>
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>  
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"/>
